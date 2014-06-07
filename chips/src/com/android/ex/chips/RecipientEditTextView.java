@@ -2349,9 +2349,9 @@ public class RecipientEditTextView extends MultiAutoCompleteTextView implements
     private void handlePasteClip(ClipData clip) {
         removeTextChangedListener(mTextWatcher);
 
-        if (clip != null && clip.getDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+        if (clip != null){
             for (int i = 0; i < clip.getItemCount(); i++) {
-                CharSequence paste = clip.getItemAt(i).getText();
+                CharSequence paste = clip.getItemAt(i).coerceToStyledText(getContext());
                 if (paste != null) {
                     int start = getSelectionStart();
                     int end = getSelectionEnd();
