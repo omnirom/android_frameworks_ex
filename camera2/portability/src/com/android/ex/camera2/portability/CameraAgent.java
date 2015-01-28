@@ -27,6 +27,7 @@ import android.os.Message;
 import android.view.SurfaceHolder;
 
 import com.android.ex.camera2.portability.debug.Log;
+import com.android.ex.camera2.portability.util.SystemProperties;
 
 /**
  * An interface which provides possible camera device operations.
@@ -43,7 +44,11 @@ import com.android.ex.camera2.portability.debug.Log;
  * {@code android.hardware.Camera.OnZoomChangeListener}, and
  */
 public abstract class CameraAgent {
-    public static final long CAMERA_OPERATION_TIMEOUT_MS = 2500;
+
+    public static final String CAMERA_OPERATION_TIMEOUT_MS_DEFAULT = "2500";
+    public static final long CAMERA_OPERATION_TIMEOUT_MS =
+        Long.parseLong(SystemProperties.get("camera2.port.operation_time_ms",
+        CAMERA_OPERATION_TIMEOUT_MS_DEFAULT));
 
     private static final Log.Tag TAG = new Log.Tag("CamAgnt");
 
