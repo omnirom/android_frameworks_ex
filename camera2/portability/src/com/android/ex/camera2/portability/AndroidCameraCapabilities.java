@@ -61,6 +61,7 @@ class AndroidCameraCapabilities extends CameraCapabilities {
         buildWhiteBalances(p);
 
         if (p.isZoomSupported()) {
+            mMaxZoomRatio = p.getZoomRatios().get(p.getMaxZoom()) / ZOOM_MULTIPLIER;
             mSupportedFeatures.add(Feature.ZOOM);
         }
         if (p.isVideoSnapshotSupported()) {
